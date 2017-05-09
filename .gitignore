@@ -31,4 +31,5 @@ $RECYCLE.BIN/
 
 thread/
 
+db_config.php
 # End of https://www.gitignore.io/api/windows,composer
