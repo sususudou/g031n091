@@ -6,11 +6,11 @@
   $mysqli = new mysqli('localhost', $db_user, $db_pass, $db_name);
   $mysqli->set_charset("utf8");
   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (!empty($_POST['message'])) {
-      $mysqli->query("insert into `messages` (`body`) values ('{$_POST['message']}')");
+    if (!empty($_POST['message']) and !empty($_POST['name'])) {
+      $mysqli->query("insert into `messages` (`body`,`name`) values ('{$_POST['message']}','{$_POST['name']}')");
       $result_message = 'データベースに登録しました！XD';
     } else {
-      $result_message = 'メッセージを入力してください...XO';
+      $result_message = 'メッセージまたは名前を入力してください...XO';
     }
   }
 
@@ -26,14 +26,20 @@
     <meta charset="utf-8">
   </head>
   <body>
+    <div id="flash">
+      <strong> <?php echo $result_message; ?> </strong>
+    </div>
     <form action="" method="post">
-      <input type="text" name="message" value="">
+      <input type="text" name="name" value="" placeholder="your name">
+      <input type="text" name="message" value="" placeholder="message">
       <input type="submit" >
     </form>
     <ul>
       <?php foreach($results as $result):?>
         <li>
-          <?php echo $result['body']; ?>
+          <?php echo "name:" .$result['name']; ?>
+          <?php echo "<br/>"; ?>
+          <?php echo "mess:" .$result['body']; ?>
         </li>
       <?php endforeach; ?>
     </ul>
