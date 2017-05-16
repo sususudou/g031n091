@@ -1,6 +1,6 @@
 <?php
 
-  require_once($_SERVER['DOCUMENT_ROOT']."/db_config.php");
+  require_once("db_config.php");
 
   // MySQLに接続
   $mysqli = new mysqli('localhost', $db_user, $db_pass, $db_name);
@@ -27,7 +27,7 @@
   </head>
   <body>
     <div id="flash">
-      <strong> <?php echo $result_message; ?> </strong>
+      <strong> <?php if(!empty($result_message)){echo $result_message;} ?> </strong>
     </div>
     <form action="" method="post">
       <input type="text" name="name" value="" placeholder="your name">
@@ -37,9 +37,9 @@
     <ul>
       <?php foreach($results as $result):?>
         <li>
-          <?php echo "name:" .$result['name']; ?>
+          <?php echo "name:" .htmlspecialchars($result['name']); ?>
           <?php echo "<br/>"; ?>
-          <?php echo "mess:" .$result['body']; ?>
+          <?php echo "mess:" .htmlspecialchars($result['body']); ?>
         </li>
       <?php endforeach; ?>
     </ul>
