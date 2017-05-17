@@ -1,6 +1,6 @@
 <?php
-
-  require_once("db_config.php");
+  // DB設定ファイルをインポート
+  require_once("../../db_config.php");
 
   // MySQLに接続
   $mysqli = new mysqli('localhost', $db_user, $db_pass, $db_name);
@@ -13,8 +13,6 @@
       $result_message = 'メッセージまたは名前を入力してください...XO';
     }
   }
-
-
 
   $results = $mysqli->query('select * from `messages` order by `id` desc');
 
