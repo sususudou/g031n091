@@ -1,7 +1,7 @@
 <?php
 
   //DBの設定ファイルから変数をロード
-  require_once("../db_config.php");
+  require_once("../../db_config.php");
 
   // MySQLに接続
   $mysqli = new mysqli('localhost', $db_user, $db_pass, $db_name);
@@ -20,9 +20,9 @@
     }
 
     // メッセージの削除
-    if (!empty($_POST['delete'])&&!empty($_POST['del'])) {
+    if (!empty($_POST['delete'])&&!empty($_POST['id'])) {
       //受け取ったidでレコードを取得
-      $del_id = $mysqli->real_escape_string($_POST['del']);
+      $del_id = $mysqli->real_escape_string($_POST['id']);
       $result = $mysqli->query("select * from `messages` where `id` = {$del_id}");
       //POSTされた削除パスワードとDBの削除パスワードを比較
       //一致していたら削除
@@ -36,10 +36,10 @@
       }
     }
     //メッセージの更新
-    else if(!empty($_POST['update'])&&!empty($_POST['del'])){
+    else if(!empty($_POST['update'])&&!empty($_POST['id'])){
       //受け取ったidでレコードを取得
-      $del_id = $mysqli->real_escape_string($_POST['del']);
-      $body = $mysqli->real_escape_string($_POST['update_mess']);
+      $del_id = $mysqli->real_escape_string($_POST['id']);
+      $body = $mysqli->real_escape_string($_POST['update_msg']);
       $result = $mysqli->query("select * from `messages` where `id` = {$del_id}");
       //POSTされたパスワードとDBのパスワードを比較
       //一致していたら更新
@@ -63,6 +63,12 @@
     <!-- bootstrapを使う -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <style>
+      *{
+        margin:5px;
+        padding:5px;
+      }
+    </style>
   </head>
 
   <body>
@@ -81,8 +87,8 @@
     <?php foreach ($result as $row) : ?>
       <tr>
         <form action="" method="post">
-          <td><input type="text" name="update_mess" value="<?php echo htmlspecialchars($row['body']); ?>"></td>
-          <input type="hidden" name="del" value="<?php echo $row['id']; ?>" />
+          <td><input type="text" name="update_msg" value="<?php echo htmlspecialchars($row['body']); ?>"></td>
+          <input type="hidden" name="id" value="<?php echo $row['id']; ?>" />
           <td><input type="password" name="del_pass" value=""></td>
           <td><input class="btn btn-success" type="submit" name="update" value="update"></td>
           <td><input class="btn btn-danger" type="submit" name="delete" value="delete" /></td>
