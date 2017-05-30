@@ -6,10 +6,10 @@
 <html>
   <head>
     <meta charset="UTF-8">
-      <script
-        src="https://code.jquery.com/jquery-2.2.4.min.js"
-        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-        crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-2.2.4.min.js"
+      integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+      crossorigin="anonymous"></script>
     <!-- Google Fonts -->
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
 
@@ -59,41 +59,42 @@
       }
     </style>
     <script charset="utf-8">
-    //message一覧をajaxで取得する
-    function getMessage(){
-      $.ajax({
-        url:"select_message.php?<?php echo $_SERVER['QUERY_STRING'];?>"
-      }).done(function(data){
-        $("table").append(data);
-      })
-    }
-        $(document).ready(function(){
-          getMessage();
-          $(document).on('click','.update-confirm-modal',(function(e){
-            if($(this).next().attr('data-modal')==='is-modal'){
-              $(this).remove("#wrapper");
-              $(this).next().attr('data-modal',"hide");
-            }
-            else{
-              $(this).next().attr('data-modal',"is-modal");
-              $(this).append('<span id="wrapper"></span>');
-            }
-          }));
-          $(document).on('click','.delete-confirm-modal',(function(e){
-            if($(this).next().attr('data-modal')==='is-modal'){
-              $(this).remove("#wrapper");
-              $(this).next().attr('data-modal',"hide");
-            }
-            else{
-              $(this).next().attr('data-modal',"is-modal");
-              $(this).append('<span id="wrapper"></span>');
-            }
-          }))
-          $(document).on('click','#wrapper',function(e){
-            $(this).next().attr('data-modal',"hide");
-            $(this).remove("#wrapper");
-          })
+      //message一覧をajaxで取得する
+      function getMessage(){
+        $.ajax({
+          url:"select_message.php?<?php echo $_SERVER['QUERY_STRING'];?>"
+        }).done(function(data){
+          $("table").append(data);
+          $("input").val("");
         })
+      }
+      $(document).ready(function(){
+        getMessage();
+        $(document).on('click','.update-confirm-modal',(function(e){
+          if($(this).next().attr('data-modal')==='is-modal'){
+            $(this).remove("#wrapper");
+            $(this).next().attr('data-modal',"hide");
+          }
+          else{
+            $(this).next().attr('data-modal',"is-modal");
+            $(this).append('<span id="wrapper"></span>');
+          }
+        }));
+        $(document).on('click','.delete-confirm-modal',(function(e){
+          if($(this).next().attr('data-modal')==='is-modal'){
+            $(this).remove("#wrapper");
+            $(this).next().attr('data-modal',"hide");
+          }
+          else{
+            $(this).next().attr('data-modal',"is-modal");
+            $(this).append('<span id="wrapper"></span>');
+          }
+        }))
+        $(document).on('click','#wrapper',function(e){
+          $(this).next().attr('data-modal',"hide");
+          $(this).remove("#wrapper");
+        })
+      })
     </script>
     <script src="MessageUpdate.js"></script>
     <script src="MessageDelete.js"></script>
@@ -106,7 +107,7 @@
       <input type="text" name="message" required value="" placeholder="ひとこと"/>
       <input type="hidden" name="thread_id" value="<?php echo $qs['id']; ?>" />
       <input type="password" name="pass" required value="" placeholder="パスワード">
-      <input type="submit" class="btn-success" />
+      <button type="submit" class="btn-success">送信</button>
     </form>
 
     <table>
