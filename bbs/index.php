@@ -59,7 +59,7 @@
           url:"select_threads.php"
         }).done(function(data){
           $("table").append(data);
-          $("[type=text],[type=password]").val("");
+          
         })
       }
       $(document).ready(function(){

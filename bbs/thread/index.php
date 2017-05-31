@@ -65,7 +65,6 @@
           url:"select_message.php?<?php echo $_SERVER['QUERY_STRING'];?>"
         }).done(function(data){
           $("table").append(data);
-          $("[type=text],[type=password]").val("");
         })
       }
       $(document).ready(function(){
