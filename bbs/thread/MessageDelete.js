@@ -2,7 +2,7 @@
 $(document).ready(function(){
     $(document).on('submit','.delete',(function(e){
       //submitボタンの動作を止めておく
-      e.preventDefault();
+    e.preventDefault();
     $.ajax({
         type:"DELETE",
         url:"../delete.php",
