@@ -2,7 +2,6 @@
 $(document).ready(function(){
   $(document).on('submit','.delete',(function(e){
     //submitボタンの動作を止めておく
-    e.preventDefault();
     $.ajax({
       type:"DELETE",
       url:"delete.php",
@@ -20,5 +19,6 @@ $(document).ready(function(){
       //再びthreadを取得する
       getThread();
     });
+    return false;
   }));
 });

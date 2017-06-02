@@ -1,8 +1,6 @@
 //Formのサブミットイベントを乗っ取てRequestメソッドを送る
 $(document).ready(function(){
   $(document).on('submit','.insert',(function(e){
-    //submitボタンの動作を止めておく
-    e.preventDefault();
     $.ajax({
       type:"POST",
       url:"insert_threads.php",
@@ -20,5 +18,6 @@ $(document).ready(function(){
       //再びthreadを取得する
       getThread();
     });
+    return false;
   }));
 });

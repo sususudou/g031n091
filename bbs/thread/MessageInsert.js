@@ -2,7 +2,6 @@
 $(document).ready(function(){
   $(document).on('submit','.insert',(function(e){
     //submitボタンの動作を止めておく
-    e.preventDefault();
     $.ajax({
       type:"POST",
       url:"insert_message.php",
@@ -22,5 +21,6 @@ $(document).ready(function(){
       //再びthreadを取得する
       getMessage();
     });
+    return false;
   }));
 });
