@@ -72,7 +72,7 @@
       }
       else{
         $(this).next().attr('data-modal',"is-modal");
-        $(this).append('<span id="wrapper"></span>');
+        $(this).after('<span id="wrapper"></span>');
       }
     }))
   });

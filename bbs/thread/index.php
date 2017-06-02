@@ -78,7 +78,7 @@ parse_str($_SERVER['QUERY_STRING'],$qs);
       }
       else{
         $(this).next().attr('data-modal',"is-modal");
-        $(this).append('<span id="wrapper"></span>');
+        $(this).after('<span id="wrapper"></span>');
       }
     }));
     $(document).on('click','.delete-confirm-modal',(function(e){
@@ -88,7 +88,7 @@ parse_str($_SERVER['QUERY_STRING'],$qs);
       }
       else{
         $(this).next().attr('data-modal',"is-modal");
-        $(this).append('<span id="wrapper"></span>');
+        $(this).after('<span id="wrapper"></span>');
       }
     }))
     $(document).on('click','#wrapper',function(e){
