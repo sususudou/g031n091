@@ -5,7 +5,6 @@
   }
   if(isset($_POST['user_name']) and isset($_POST['password'])){
     if($_POST['user_name'] == 'test' and $_POST['password'] == 'pass'){
-
       $_SESSION['user_id'] = 2;
       header('Location: http://localhost:8888/mathqa/');
     }
@@ -16,7 +15,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Lgoin</title>
+    <title>Login</title>
   </head>
   <body>
     <form class="" action="" method="post">
